@@ -6,6 +6,7 @@ import me.ohvalsgod.cutechat.player.data.settings.ChatStatus;
 import me.ohvalsgod.cutechat.util.MapUtil;
 import net.dv8tion.jda.api.MessageBuilder;
 import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.bukkit.Bukkit;
@@ -25,9 +26,34 @@ public class CCListener extends ListenerAdapter {
 
                 for (Player player : Bukkit.getOnlinePlayers()) {
                     PlayerData data = CuteCHAT.getInstance().getPlayerDataHandler().getPlayerDataFromUUID(player.getUniqueId());
+                    ChatColor color = ChatColor.WHITE;
+
+                    for (Role role : CuteCHAT.getInstance().getDiscordImplementation().getGuild().getMember(event.getAuthor()).getRoles()) {
+                        if (role.getName().equalsIgnoreCase("Royale Blue")) {
+                            color = ChatColor.BLUE;
+                        } else if (role.getName().equalsIgnoreCase("Cyan")) {
+                            color = ChatColor.AQUA;
+                        } else if (role.getName().equalsIgnoreCase("Aquamarine")) {
+                            color = ChatColor.AQUA;
+                        } else if (role.getName().equalsIgnoreCase("Glacier Blue")) {
+                            color = ChatColor.GRAY;
+                        } else if (role.getName().equalsIgnoreCase("Golden")) {
+                            color = ChatColor.GOLD;
+                        } else if (role.getName().equalsIgnoreCase("Pink")) {
+                            color = ChatColor.LIGHT_PURPLE;
+                        } else if (role.getName().equalsIgnoreCase("Deep Purple")) {
+                            color = ChatColor.DARK_PURPLE;
+                        } else if (role.getName().equalsIgnoreCase("Crimson")) {
+                            color = ChatColor.RED;
+                        } else if (role.getName().equalsIgnoreCase("Maroon")) {
+                            color = ChatColor.DARK_RED;
+                        } else if (role.getName().equalsIgnoreCase("Black")) {
+                            color = ChatColor.BLACK;
+                        }
+                    }
 
                     if (data.getSettings().getChatStatus() == ChatStatus.BOTH || data.getSettings().getChatStatus()== ChatStatus.DISCORD_ONLY) {
-                        player.sendMessage(event.getAuthor().getName() + ": " + message);
+                        player.sendMessage(color + event.getAuthor().getName() + ": " + message);
                     }
                 }
             }
