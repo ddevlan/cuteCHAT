@@ -32,6 +32,7 @@ public class PlayerData {
         miningData = new PlayerMiningData();
         color = ChatColor.WHITE;
         linked = false;
+        discordId = "";
     }
 
     public double getKda() {

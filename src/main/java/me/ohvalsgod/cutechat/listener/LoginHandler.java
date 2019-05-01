@@ -27,8 +27,6 @@ public class LoginHandler implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        event.setJoinMessage(event.getPlayer().getDisplayName() + " has joined the game.");
-
         PlayerData data = CuteCHAT.getInstance().getPlayerDataHandler().getPlayerDataFromUUID(event.getPlayer().getUniqueId());
 
         if (data.isLinked()) {
@@ -36,6 +34,8 @@ public class LoginHandler implements Listener {
         } else {
             event.getPlayer().sendMessage(ChatColor.RED + "Could not set your color because you don't have your discord linked, if you'd like to match color in discord and ingame, type /link!");
         }
+
+        event.setJoinMessage(event.getPlayer().getDisplayName() + " has joined the game.");
     }
 
     @EventHandler

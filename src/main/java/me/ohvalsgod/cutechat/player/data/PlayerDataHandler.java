@@ -88,7 +88,10 @@ public class PlayerDataHandler {
                 data.setKills(config.getInt("kills"));
                 data.setDeaths(config.getInt("deaths"));
 
-                if (!data.getDiscordId().isEmpty()) data.setDiscordId(config.getString("discord.id"));
+                if (config.contains("discord.id")) {
+                    data.setDiscordId(config.getString("discord.id"));
+                    data.setLinked(true);
+                }
 
                 data.getSettings().setFoundDiamonds(config.getBoolean("settings.found_diamonds"));
                 data.getSettings().setChatStatus(ChatStatus.valueOf(config.getString("settings.chat_status")));

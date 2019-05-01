@@ -8,10 +8,7 @@ import me.ohvalsgod.cutechat.player.data.PlayerData;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.MessageBuilder;
-import net.dv8tion.jda.api.entities.Message;
-import net.dv8tion.jda.api.entities.Role;
-import net.dv8tion.jda.api.entities.TextChannel;
-import net.dv8tion.jda.api.entities.User;
+import net.dv8tion.jda.api.entities.*;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -27,6 +24,7 @@ public class DiscordImplementation {
 
     private JDA jda;
     private TextChannel chatChannel, configChannel;
+    private Guild guild;
     private Map<String, String> linking = new HashMap<>();
 
     public DiscordImplementation(CuteCHAT instance) {
@@ -40,6 +38,7 @@ public class DiscordImplementation {
 
                 chatChannel = jda.getTextChannelById("572369692119924736");
                 configChannel = jda.getTextChannelById("572191148643319819");
+                guild = jda.getGuildById("572186991060320266");
             } catch (LoginException | InterruptedException e) {
                 e.printStackTrace();
                 instance.getServer().getPluginManager().disablePlugin(instance);
@@ -86,7 +85,7 @@ public class DiscordImplementation {
     public void applyColors(PlayerData data) {
         User user = jda.getUserById(data.getDiscordId());
 
-        for (Role role : user.getJDA().getRoles()) {
+        for (Role role : guild.getMemberById(data.getDiscordId()).getRoles()) {
             if (role.getName().equalsIgnoreCase("Royale Blue")) {
                 data.setColor(ChatColor.BLUE);
             } else if (role.getName().equalsIgnoreCase("Cyan")) {
@@ -109,6 +108,7 @@ public class DiscordImplementation {
                 data.setColor(ChatColor.BLACK);
             }
         }
+
         if (Bukkit.getPlayer(data.getUuid()) != null) {
             Player player = Bukkit.getPlayer(data.getUuid());
             player.setDisplayName(data.getColor() + player.getName());
