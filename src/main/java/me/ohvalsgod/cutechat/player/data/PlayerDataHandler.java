@@ -52,7 +52,7 @@ public class PlayerDataHandler {
         config.set("mining.diamond", data.getMiningData().getDiamonds());
         config.set("mining.iron", data.getMiningData().getIron());
         config.set("mining.gold", data.getMiningData().getGold());
-        config.set("mining.stone.", data.getMiningData().getStone());
+        config.set("mining.stone", data.getMiningData().getStone());
 
         if (!file.exists()) {
             try {

@@ -26,7 +26,7 @@ public class GeneralCommands implements CommandExecutor {
             new SettingsMenu().openMenu(player);
             return true;
         } else if (command.getName().equalsIgnoreCase("ores")) {
-            if (args.length < 1) {
+            if (args.length == 0) {
                 if (CuteCHAT.getInstance().getPlayerDataHandler().getPlayerFromName(args[0]) == null) {
                     player.sendMessage(ChatColor.RED + "'" + args[0] + "' has never joined the server.");
                     return false;
