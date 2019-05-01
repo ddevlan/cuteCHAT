@@ -3,6 +3,7 @@ package me.ohvalsgod.cutechat.player.data;
 import lombok.Getter;
 import me.ohvalsgod.cutechat.CuteCHAT;
 import me.ohvalsgod.cutechat.player.data.settings.ChatStatus;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
@@ -43,6 +44,7 @@ public class PlayerDataHandler {
         config.set("name", data.getName());
         config.set("kills", data.getKills());
         config.set("deaths", data.getDeaths());
+        if (!data.getDiscordId().isEmpty()) config.set("discord.id", data.getDiscordId());
         config.set("settings.found_diamonds", data.getSettings().isFoundDiamonds());
         config.set("settings.chat_status", data.getSettings().getChatStatus().name());
         config.set("settings.tips", data.getSettings().isTips());
@@ -85,6 +87,8 @@ public class PlayerDataHandler {
                 data.setName(config.getString("name"));     //TODO: grab from some uuid -> name api
                 data.setKills(config.getInt("kills"));
                 data.setDeaths(config.getInt("deaths"));
+
+                if (!data.getDiscordId().isEmpty()) data.setDiscordId(config.getString("discord.id"));
 
                 data.getSettings().setFoundDiamonds(config.getBoolean("settings.found_diamonds"));
                 data.getSettings().setChatStatus(ChatStatus.valueOf(config.getString("settings.chat_status")));

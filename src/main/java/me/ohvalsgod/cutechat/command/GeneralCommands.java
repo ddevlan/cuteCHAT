@@ -56,12 +56,12 @@ public class GeneralCommands implements CommandExecutor {
         } else if (command.getName().equalsIgnoreCase("link")) {
             if (!data.isLinked()) {
                 CuteCHAT.getInstance().getDiscordImplementation().getLinking().put(player.getUniqueId().toString(), RandomStringUtils.randomAlphanumeric(6));
-                player.sendMessage(ChatColor.YELLOW + "Please type the following code in #config: " + CuteCHAT.getInstance().getDiscordImplementation().getLinking().get(player.getUniqueId().toString()));
+                player.sendMessage(ChatColor.YELLOW + "Please type the following code in #config: " + ChatColor.GREEN + CuteCHAT.getInstance().getDiscordImplementation().getLinking().get(player.getUniqueId().toString()));
 
                 MessageBuilder mb = new MessageBuilder("If your name is " + player.getName() + " ingame, please type the following code: " + CuteCHAT.getInstance().getDiscordImplementation().getLinking().get(player.getUniqueId().toString()));
                 Message message = CuteCHAT.getInstance().getDiscordImplementation().applyMentions(mb.build());
 
-                CuteCHAT.getInstance().getDiscordImplementation().getChatChannel().sendMessage(message).queue();
+                CuteCHAT.getInstance().getDiscordImplementation().getConfigChannel().sendMessage(message).queue();
                 new BukkitRunnable() {
                     @Override
                     public void run() {

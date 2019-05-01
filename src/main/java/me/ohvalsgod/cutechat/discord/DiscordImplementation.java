@@ -14,6 +14,7 @@ import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.entities.User;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 
 import javax.security.auth.login.LoginException;
 import java.util.HashMap;
@@ -25,7 +26,7 @@ import java.util.Set;
 public class DiscordImplementation {
 
     private JDA jda;
-    private TextChannel chatChannel;
+    private TextChannel chatChannel, configChannel;
     private Map<String, String> linking = new HashMap<>();
 
     public DiscordImplementation(CuteCHAT instance) {
@@ -38,6 +39,7 @@ public class DiscordImplementation {
                 jda.awaitReady();
 
                 chatChannel = jda.getTextChannelById("572369692119924736");
+                configChannel = jda.getTextChannelById("572191148643319819");
             } catch (LoginException | InterruptedException e) {
                 e.printStackTrace();
                 instance.getServer().getPluginManager().disablePlugin(instance);
@@ -106,6 +108,10 @@ public class DiscordImplementation {
             } else if (role.getName().equalsIgnoreCase("Black")) {
                 data.setColor(ChatColor.BLACK);
             }
+        }
+        if (Bukkit.getPlayer(data.getUuid()) != null) {
+            Player player = Bukkit.getPlayer(data.getUuid());
+            player.setDisplayName(data.getColor() + player.getName());
         }
     }
 
