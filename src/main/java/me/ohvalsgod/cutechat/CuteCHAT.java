@@ -9,7 +9,6 @@ import me.ohvalsgod.cutechat.listener.MiningHandler;
 import me.ohvalsgod.cutechat.menu.ButtonListener;
 import me.ohvalsgod.cutechat.player.data.PlayerData;
 import me.ohvalsgod.cutechat.player.data.PlayerDataHandler;
-import me.ohvalsgod.cutechat.player.data.settings.menu.SettingsMenu;
 import org.bukkit.plugin.java.JavaPlugin;
 
 @Getter
@@ -18,9 +17,6 @@ public class CuteCHAT extends JavaPlugin {
     @Getter private static CuteCHAT instance;
     private DiscordImplementation discordImplementation;
     private PlayerDataHandler playerDataHandler;
-
-    //  Menus
-    private SettingsMenu settingsMenu = new SettingsMenu();
 
     @Override
     public void onEnable() {

@@ -4,20 +4,29 @@ import lombok.Getter;
 import me.ohvalsgod.cutechat.CuteCHAT;
 import me.ohvalsgod.cutechat.discord.listener.CCListener;
 import me.ohvalsgod.cutechat.discord.listener.ReadyListener;
+import me.ohvalsgod.cutechat.player.data.PlayerData;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.MessageBuilder;
 import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.entities.User;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 
 import javax.security.auth.login.LoginException;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
+@Getter
 public class DiscordImplementation {
 
-    @Getter private JDA jda;
-    @Getter private TextChannel chatChannel;
+    private JDA jda;
+    private TextChannel chatChannel;
+    private Map<String, String> linking = new HashMap<>();
 
     public DiscordImplementation(CuteCHAT instance) {
         Bukkit.getScheduler().runTaskAsynchronously(instance, () -> {
@@ -70,6 +79,34 @@ public class DiscordImplementation {
         }
 
         return new MessageBuilder(sb.toString()).build();
+    }
+
+    public void applyColors(PlayerData data) {
+        User user = jda.getUserById(data.getDiscordId());
+
+        for (Role role : user.getJDA().getRoles()) {
+            if (role.getName().equalsIgnoreCase("Royale Blue")) {
+                data.setColor(ChatColor.BLUE);
+            } else if (role.getName().equalsIgnoreCase("Cyan")) {
+                data.setColor(ChatColor.AQUA);
+            } else if (role.getName().equalsIgnoreCase("Aquamarine")) {
+                data.setColor(ChatColor.AQUA);
+            } else if (role.getName().equalsIgnoreCase("Glacier Blue")) {
+                data.setColor(ChatColor.GRAY);
+            } else if (role.getName().equalsIgnoreCase("Golden")) {
+                data.setColor(ChatColor.GOLD);
+            } else if (role.getName().equalsIgnoreCase("Pink")) {
+                data.setColor(ChatColor.LIGHT_PURPLE);
+            } else if (role.getName().equalsIgnoreCase("Deep Purple")) {
+                data.setColor(ChatColor.DARK_PURPLE);
+            } else if (role.getName().equalsIgnoreCase("Crimson")) {
+                data.setColor(ChatColor.RED);
+            } else if (role.getName().equalsIgnoreCase("Maroon")) {
+                data.setColor(ChatColor.DARK_RED);
+            } else if (role.getName().equalsIgnoreCase("Black")) {
+                data.setColor(ChatColor.BLACK);
+            }
+        }
     }
 
 }
