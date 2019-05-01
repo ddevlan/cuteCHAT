@@ -34,6 +34,7 @@
             <groupId>net.dv8tion</groupId>
             <artifactId>JDA</artifactId>
             <version>LATEST</version>
+            <scope>compile</scope>
         </dependency>
         <!--Lombok-->
         <dependency>

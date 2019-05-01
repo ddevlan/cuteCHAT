@@ -1,5 +1,8 @@
 name: cuteCHAT
 main: me.ohvalsgod.cutechat.CuteCHAT
-version: 1.0.0
+version: b(${git.commit.id.abbrev})
 api-version: 1.13
 author: ohvals
+
+commands:
+  settings:
