@@ -5,6 +5,7 @@ import me.ohvalsgod.cutechat.command.GeneralCommands;
 import me.ohvalsgod.cutechat.discord.DiscordImplementation;
 import me.ohvalsgod.cutechat.listener.ChatHandler;
 import me.ohvalsgod.cutechat.listener.LoginHandler;
+import me.ohvalsgod.cutechat.listener.MiningHandler;
 import me.ohvalsgod.cutechat.menu.ButtonListener;
 import me.ohvalsgod.cutechat.player.data.PlayerData;
 import me.ohvalsgod.cutechat.player.data.PlayerDataHandler;
@@ -53,6 +54,7 @@ public class CuteCHAT extends JavaPlugin {
         instance.getServer().getPluginManager().registerEvents(new ChatHandler(), instance);
         instance.getServer().getPluginManager().registerEvents(new LoginHandler(), instance);
         instance.getServer().getPluginManager().registerEvents(new ButtonListener(), instance);
+        instance.getServer().getPluginManager().registerEvents(new MiningHandler(), instance);
     }
 
 }

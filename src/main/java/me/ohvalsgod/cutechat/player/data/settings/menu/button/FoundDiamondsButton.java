@@ -22,8 +22,9 @@ public class FoundDiamondsButton extends Button {
                 .lore(Arrays.asList("",
                         ChatColor.BLUE + "Do you want to see",
                         ChatColor.BLUE + "found-diamond messages?",
-                        (data.getSettings().isFoundDiamonds() ? " ➤":" ") + ChatColor.YELLOW + "Show messages",
-                        (!data.getSettings().isFoundDiamonds() ? " ➤":" ") + ChatColor.YELLOW + "Hide messages")).build();
+                        "",
+                        (data.getSettings().isFoundDiamonds() ? " ➤":" ") + ChatColor.YELLOW + " Show messages",
+                        (!data.getSettings().isFoundDiamonds() ? " ➤":" ") + ChatColor.YELLOW + " Hide messages")).build();
     }
 
 }

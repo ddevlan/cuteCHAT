@@ -23,9 +23,10 @@ public class ChatStatusButton extends Button {
                 .lore(Arrays.asList("",
                         ChatColor.BLUE + "How would you like",
                         ChatColor.BLUE + "to see your chat?",
-                        (data.getSettings().getChatStatus() == ChatStatus.BOTH ? " ➤":" ") + ChatColor.YELLOW + "Show both",
-                        (data.getSettings().getChatStatus() == ChatStatus.DISCORD_ONLY ? " ➤":" ") + ChatColor.YELLOW + "Show discord only",
-                        (data.getSettings().getChatStatus() == ChatStatus.GLOBAL_ONLY ? " ➤":" ") + ChatColor.YELLOW + "Show global only")).build();
+                        "",
+                        (data.getSettings().getChatStatus() == ChatStatus.BOTH ? " ➤":" ") + ChatColor.YELLOW + " Show both",
+                        (data.getSettings().getChatStatus() == ChatStatus.DISCORD_ONLY ? " ➤":" ") + ChatColor.YELLOW + " Show discord only",
+                        (data.getSettings().getChatStatus() == ChatStatus.GLOBAL_ONLY ? " ➤":" ") + ChatColor.YELLOW + " Show global only")).build();
     }
 
 }

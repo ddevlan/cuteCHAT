@@ -17,13 +17,14 @@ public class ToggleTipsButton extends Button {
     public ItemStack getButtonItem(Player player) {
         PlayerData data = CuteCHAT.getInstance().getPlayerDataHandler().getPlayerDataFromUUID(player.getUniqueId());
 
-        return new ItemBuilder(Material.STONE_BUTTON)
+        return new ItemBuilder(Material.LEVER)
                 .name(ChatColor.LIGHT_PURPLE + "Tips")
                 .lore(Arrays.asList("",
                         ChatColor.BLUE + "Do you want to see",
                         ChatColor.BLUE + "in-game tips?",
-                        (data.getSettings().isTips() ? " ➤":" ") + ChatColor.YELLOW + "Show tips",
-                        (!data.getSettings().isTips() ? " ➤":" ") + ChatColor.YELLOW + "Hide tips")).build();
+                        "",
+                        (data.getSettings().isTips() ? " ➤":" ") + ChatColor.YELLOW + " Show tips",
+                        (!data.getSettings().isTips() ? " ➤":" ") + ChatColor.YELLOW + " Hide tips")).build();
     }
 
 }

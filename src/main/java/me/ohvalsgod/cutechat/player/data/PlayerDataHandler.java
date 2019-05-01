@@ -21,7 +21,7 @@ public class PlayerDataHandler {
     public PlayerDataHandler(CuteCHAT instance) {
         this.instance = instance;
 
-        dataFolder = new File(CuteCHAT.getInstance().getDataFolder() + "player_data/");
+        dataFolder = new File(CuteCHAT.getInstance().getDataFolder() + "/player_data/");
 
         if (!dataFolder.exists()) {
             dataFolder.mkdirs();
@@ -37,15 +37,22 @@ public class PlayerDataHandler {
 
         PlayerData data = getPlayerDataFromUUID(uuid);
 
-        File file = new File(dataFolder + uuid.toString() + ".yml");
+        File file = new File(dataFolder + File.separator + uuid.toString() + ".yml");
         YamlConfiguration config = new YamlConfiguration();
 
         config.set("name", data.getName());
         config.set("kills", data.getKills());
         config.set("deaths", data.getDeaths());
         config.set("settings.found_diamonds", data.getSettings().isFoundDiamonds());
-        config.set("settings.chat_status", data.getSettings().getChatStatus());
+        config.set("settings.chat_status", data.getSettings().getChatStatus().name());
         config.set("settings.tips", data.getSettings().isTips());
+        config.set("mining.lapis", data.getMiningData().getLapis());
+        config.set("mining.redstone", data.getMiningData().getRedstone());
+        config.set("mining.coal", data.getMiningData().getCoal());
+        config.set("mining.diamond", data.getMiningData().getDiamonds());
+        config.set("mining.iron", data.getMiningData().getIron());
+        config.set("mining.gold", data.getMiningData().getGold());
+        config.set("mining.stone.", data.getMiningData().getStone());
 
         if (!file.exists()) {
             try {
@@ -83,6 +90,14 @@ public class PlayerDataHandler {
                 data.getSettings().setChatStatus(ChatStatus.valueOf(config.getString("settings.chat_status")));
                 data.getSettings().setTips(config.getBoolean("settings.tips"));
 
+                data.getMiningData().setLapis(config.getInt("mining.lapis"));
+                data.getMiningData().setRedstone(config.getInt("mining.redstone"));
+                data.getMiningData().setCoal(config.getInt("mining.coal"));
+                data.getMiningData().setDiamonds(config.getInt("mining.diamond"));
+                data.getMiningData().setIron(config.getInt("mining.iron"));
+                data.getMiningData().setGold(config.getInt("mining.gold"));
+                data.getMiningData().setStone(config.getInt("mining.stone"));
+
                 dataSet.add(data);
             }
         }
@@ -92,6 +107,15 @@ public class PlayerDataHandler {
     public PlayerData getPlayerDataFromUUID(UUID uuid) {
         for (PlayerData data : dataSet) {
             if (data.getUuid().equals(uuid)) {
+                return data;
+            }
+        }
+        return null;
+    }
+
+    public PlayerData getPlayerFromName(String name) {
+        for (PlayerData data : dataSet) {
+            if (data.getName().equalsIgnoreCase(name)) {
                 return data;
             }
         }
