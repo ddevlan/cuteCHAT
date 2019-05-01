@@ -53,7 +53,7 @@ public class CCListener extends ListenerAdapter {
                     }
 
                     if (data.getSettings().getChatStatus() == ChatStatus.BOTH || data.getSettings().getChatStatus()== ChatStatus.DISCORD_ONLY) {
-                        player.sendMessage(color + event.getAuthor().getName() + ": " + message);
+                        player.sendMessage(color + CuteCHAT.getInstance().getPlayerDataHandler().getPlayerNameFromDiscordId(event.getAuthor().getId(), event.getAuthor().getName()) + ": " + message);
                     }
                 }
             }

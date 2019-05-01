@@ -129,4 +129,15 @@ public class PlayerDataHandler {
         return null;
     }
 
+    public String getPlayerNameFromDiscordId(String discordId, String fallback) {
+        for (PlayerData data : dataSet) {
+            if (!data.getDiscordId().isEmpty()) {
+                if (data.getDiscordId().equalsIgnoreCase(discordId)) {
+                    return data.getName();
+                }
+            }
+        }
+        return fallback;
+    }
+
 }
