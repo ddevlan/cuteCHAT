@@ -8,6 +8,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -39,7 +40,13 @@ public class MiningHandler implements Listener {
             }  else if (block.getType() == Material.DIAMOND_ORE) {
                 if (block.getMetadata("DIAMOND_FOUND").isEmpty()) {
                     int found = diamondsNear(block.getLocation());
-                    Bukkit.broadcastMessage("[FD] " + ChatColor.AQUA + event.getPlayer().getName() + " found " + found + " diamonds.");
+                    for (Player player : Bukkit.getOnlinePlayers()) {
+                        PlayerData $data = CuteCHAT.getInstance().getPlayerDataHandler().getPlayerDataFromUUID(player.getUniqueId());
+
+                        if ($data.getSettings().isFoundDiamonds()) {
+                            player.sendMessage("[FD] " + ChatColor.AQUA + event.getPlayer().getName() + " found " + found + " diamonds.");
+                        }
+                    }
                     mdata.setDiamonds(mdata.getDiamonds() + found);
                 }
             }

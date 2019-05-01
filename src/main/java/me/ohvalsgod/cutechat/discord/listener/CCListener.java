@@ -1,6 +1,8 @@
 package me.ohvalsgod.cutechat.discord.listener;
 
 import me.ohvalsgod.cutechat.CuteCHAT;
+import me.ohvalsgod.cutechat.player.data.PlayerData;
+import me.ohvalsgod.cutechat.player.data.settings.ChatStatus;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.bukkit.Bukkit;
@@ -14,38 +16,14 @@ public class CCListener extends ListenerAdapter {
             if (!event.getAuthor().isBot()) {
                 String message = event.getMessage().getContentRaw();
 
-                Bukkit.getServer().broadcastMessage(event.getAuthor().getName() + ": " + message);
-            }
+                for (Player player : Bukkit.getOnlinePlayers()) {
+                    PlayerData data = CuteCHAT.getInstance().getPlayerDataHandler().getPlayerDataFromUUID(player.getUniqueId());
 
-//            if (message.startsWith("!")) {
-//                //TODO: @me.ohvalsgod.cutechat.command
-//                String command = message.replaceFirst("!", "").split(" ")[0];
-//                String[] args = message.replace("!" + command + " ", "").split(" ");
-//
-//                if (command.equalsIgnoreCase("sayserver")) {
-//                    if (args.length == 0) {
-//                        return;
-//                    }
-//
-//                    StringBuilder sb = new StringBuilder();
-//                    int i = 0;
-//                    for (String string : args) {
-//                        sb.append(string);
-//                        if (i < args.length) {
-//                            sb.append(" ");
-//                        }
-//                        i++;
-//                    }
-//
-//                    String out = sb.toString();
-//
-//                    for (Player player : CuteCHAT.getInstance().getServer().getOnlinePlayers()) {
-//                        //TODO: yada yada check settings
-//                        //TODO: get color for rank
-//                        player.sendMessage(event.getAuthor().getName() + ": " + out);
-//                    }
-//                }
-//            }
+                    if (data.getSettings().getChatStatus() == ChatStatus.BOTH || data.getSettings().getChatStatus()== ChatStatus.DISCORD_ONLY) {
+                        player.sendMessage(event.getAuthor().getName() + ": " + message);
+                    }
+                }
+            }
         }
     }
 

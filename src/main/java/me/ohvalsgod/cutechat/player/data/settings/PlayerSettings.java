@@ -13,6 +13,7 @@ public class PlayerSettings {
 
     public PlayerSettings() {
         foundDiamonds = true;
+        tips = true;
         chatStatus = ChatStatus.BOTH;
     }
 

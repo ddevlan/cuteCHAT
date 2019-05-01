@@ -26,7 +26,7 @@ public class GeneralCommands implements CommandExecutor {
             new SettingsMenu().openMenu(player);
             return true;
         } else if (command.getName().equalsIgnoreCase("ores")) {
-            if (args.length == 0) {
+            if (args.length == 1) {
                 if (CuteCHAT.getInstance().getPlayerDataHandler().getPlayerFromName(args[0]) == null) {
                     player.sendMessage(ChatColor.RED + "'" + args[0] + "' has never joined the server.");
                     return false;
@@ -35,13 +35,13 @@ public class GeneralCommands implements CommandExecutor {
                 PlayerData targetData = CuteCHAT.getInstance().getPlayerDataHandler().getPlayerFromName(args[0]);
                 PlayerMiningData miningData = targetData.getMiningData();
 
-                player.sendMessage(" ");
                 player.sendMessage(ChatColor.BLUE + "Lapis: " + ChatColor.WHITE + miningData.getLapis());
                 player.sendMessage(ChatColor.RED + "Redstone: " + ChatColor.WHITE + miningData.getRedstone());
                 player.sendMessage(ChatColor.AQUA + "Diamonds: " + ChatColor.WHITE + miningData.getDiamonds());
                 player.sendMessage(ChatColor.GOLD + "Gold: " + ChatColor.WHITE + miningData.getGold());
                 player.sendMessage(ChatColor.GRAY + "Iron: " + ChatColor.WHITE + miningData.getIron());
-                player.sendMessage(ChatColor.GRAY + "Stone : " + ChatColor.WHITE + miningData.getStone());
+                player.sendMessage(ChatColor.BLACK + "Coal: " + ChatColor.WHITE + miningData.getCoal());
+                player.sendMessage(ChatColor.DARK_GRAY + "Stone : " + ChatColor.WHITE + miningData.getStone());
                 return true;
             } else {
                 player.sendMessage(ChatColor.RED + "Usage: /ores <player>");
