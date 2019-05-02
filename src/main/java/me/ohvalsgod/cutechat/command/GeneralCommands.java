@@ -4,6 +4,7 @@ import me.ohvalsgod.cutechat.CuteCHAT;
 import me.ohvalsgod.cutechat.player.data.PlayerData;
 import me.ohvalsgod.cutechat.player.data.mining.PlayerMiningData;
 import me.ohvalsgod.cutechat.player.data.settings.menu.SettingsMenu;
+import me.ohvalsgod.cutechat.util.CC;
 import net.dv8tion.jda.api.MessageBuilder;
 import net.dv8tion.jda.api.entities.Message;
 import org.apache.commons.lang.RandomStringUtils;
@@ -72,6 +73,15 @@ public class GeneralCommands implements CommandExecutor {
             } else {
                 player.sendMessage(ChatColor.RED + "You silly miner! You already have your discord ID linked!");
             }
+        } else if (command.getName().equalsIgnoreCase("help")) {
+            player.sendMessage(ChatColor.GOLD + CC.HORIZONTAL_SEPARATOR);
+            player.sendMessage(ChatColor.BLUE + "" + ChatColor.ITALIC + "cute CHAT Help " + ChatColor.GRAY + "- " + ChatColor.YELLOW + "Information on cute CHAT");
+            player.sendMessage(ChatColor.GRAY + CC.HORIZONTAL_SEPARATOR);
+            player.sendMessage(ChatColor.BLUE + "Helpful Commands:");
+            player.sendMessage(ChatColor.YELLOW + "/settings " + ChatColor.GRAY + "- Change your personal settings");
+            player.sendMessage(ChatColor.YELLOW + "/link " + ChatColor.GRAY + "- Link your Discord and Minecraft account together");
+            player.sendMessage(ChatColor.YELLOW + "/ores <player>" + ChatColor.GRAY + "- Check a specified player's ore count");
+            player.sendMessage(ChatColor.GOLD + CC.HORIZONTAL_SEPARATOR);
         }
 
         return false;

@@ -46,6 +46,7 @@ public class CuteCHAT extends JavaPlugin {
         instance.getCommand("settings").setExecutor(new GeneralCommands());
         instance.getCommand("ores").setExecutor(new GeneralCommands());
         instance.getCommand("link").setExecutor(new GeneralCommands());
+        instance.getCommand("help").setExecutor(new GeneralCommands());
     }
 
     private void registerListeners() {
